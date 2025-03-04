@@ -25,13 +25,13 @@ Route::get('/hello', function () {
 //     return 'Selamat Datang';
 // });
 
-Route::get('/', [HomeController::class,'index']);
+Route::get('/', [HomeController::class, 'index']);
 
 // Route::get('/about', function () {
 //     return nl2br("Nama: Fahri Zanuar Pradian \n NIM: 2341720104");
 // });
 
-Route::get('/about', [AboutController::class,'about']);
+Route::get('/about', [AboutController::class, 'about']);
 
 
 Route::get('/user/{name}', function ($name) {
@@ -46,19 +46,26 @@ Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
 //     return 'Halaman Artikel dengan ID ' . $id;
 // });
 
-Route::get('/articles/{id}', [ArticleController::class,'articles']);
+Route::get('/articles/{id}', [ArticleController::class, 'articles']);
 
 
-Route::get('/user/{name?}', function ($name='john') {
-    return 'Nama saya '. $name;
+Route::get('/user/{name?}', function ($name = 'john') {
+    return 'Nama saya ' . $name;
 });
 
-Route::get('/hello', [WelcomeController::class,'hello']);
+Route::get('/hello', [WelcomeController::class, 'hello']);
 
 Route::resource('photos', PhotoController::class);
 
 Route::resource('photos', PhotoController::class)->only([
-    'index', 'show'
-    ]);
-    Route::resource('photos', PhotoController::class)->except([
-    'create', 'store', 'update', 'destroy']);
+    'index',
+    'show'
+]);
+Route::resource('photos', PhotoController::class)->except([
+    'create',
+    'store',
+    'update',
+    'destroy'
+]);
+
+Route::get('/greeting', [WelcomeController::class, 'greeting']);
