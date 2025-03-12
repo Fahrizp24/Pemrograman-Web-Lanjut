@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'Asia/Jakarta'),
 
     /*
     |--------------------------------------------------------------------------
@@ -113,7 +113,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Encryption Key
+    | Encryption 
     |--------------------------------------------------------------------------
     |
     | This key is used by the Illuminate encrypter service and should be set

@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+
+use Database\Seeders\KategoriSeeder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +31,6 @@ Route::get('/user/{id}/name/{name}', [UserController::class, 'profile']);
 Route::get('/penjualan', function () {
     return view('sales');
 });
+
+Route::get('/level',[LevelController::class,'index']);
+Route::get('/kategori',[KategoriController::class,'index']);
