@@ -85,8 +85,11 @@ class UserController extends Controller
         // $user->wasChanged(['nama', 'username']);//false
         // dd($user->wasChanged());
 
-        $user = UserModel::all();
-        return view('user', ['data' => $user]);
+        // $user = UserModel::all();
+        // return view('user', ['data' => $user]);
+
+        $user = UserModel::with('level')->get();
+        return view ('user',['data'=>$user]);
     }
 
     public function tambah()
