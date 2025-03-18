@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function (){
+//     return view('home');
+// });
 
 Route::prefix('admin')->group(function () {
     Route::get('/category/food-beverage', [AdminController::class, 'foodbeverage']);
@@ -31,7 +31,7 @@ Route::get('/user/{id}/name/{name}', [UserController::class, 'profile']);
 Route::get('/penjualan', function () {
     return view('sales');
 });
-
+Route::get('/',[WelcomeController::class,'index']);
 Route::get('/level',[LevelController::class,'index']);
 Route::get('/kategori',[KategoriController::class,'index']);
 Route::get('/user', [UserController::class,'index']);
