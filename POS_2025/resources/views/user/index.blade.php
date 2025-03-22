@@ -60,13 +60,6 @@
 @push('js')
     <script>
         function modalAction(url = '') {
-            function modalAction(url = '') {
-                alert("Loading URL: " + url);  // Debugging
-                $('#myModal').load(url, function () {
-                    $('#myModal').modal('show');
-                });
-            }
-
             $('#myModal').load(url, function () {
                 $('#myModal').modal('show');
             })

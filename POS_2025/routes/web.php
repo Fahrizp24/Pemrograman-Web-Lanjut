@@ -49,7 +49,6 @@ Route::group(['prefix' => 'user'], function () {
     Route::delete('/{id}', [UserController::class, 'destroy']);
 });
 
-
 Route::group(['prefix' => 'level'], function(){
     Route::get('/', [LevelController::class, 'index']);
     Route::get('/list', [LevelController::class, 'list']);
