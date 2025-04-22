@@ -1,37 +1,40 @@
-<form action="{{ url('/user/ajax') }}" method="POST" id="form-tambah">
+<form action="{{ url('/barang /ajax') }}" method="POST" id="form-tambah">
     @csrf
     <div id="modal-master" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data User</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Barang</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>Level Pengguna</label>
-                    <select name="level_id" id="level_id" class="form-control" required>
-                        <option value="">- Pilih Level -</option>
-                        @foreach($level as $l)
-                            <option value="{{ $l->level_id }}">{{ $l->level_nama }}</option>
+                    <label>Kode Barang</label>
+                    <input value="" type="text" name="barang_kode" id="barang_kode" class="form-control" required>
+                    <small id="error-barang-kode" class="error-text form-text text-danger"></small>
+                </div>
+                <div class="form-group">
+                    <label>Nama Barang</label>
+                    <input value="" type="text" name="barang_nama" id="barang_nama" class="form-control" required>
+                    <small id="error-barang-kode" class="error-text form-text text-danger"></small>
+                </div>
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <select name="kategori_id" id="kategori_id" class="form-control" required>
+                        <option value="">- Pilih kategori -</option>
+                        @foreach($kategori as $l)
+                            <option value="{{ $l->kategori_id }}">{{ $l->kategori_nama }}</option>
                         @endforeach
                     </select>
-                    <small id="error-level_id" class="error-text form-text text-danger"></small>
+                    <small id="error-kategori_id" class="error-text form-text text-danger"></small>
                 </div>
                 <div class="form-group">
-                    <label>Username</label>
-                    <input value="" type="text" name="username" id="username" class="form-control" required>
-                    <small id="error-username" class="error-text form-text text-danger"></small>
-                </div>
-                <div class="form-group">
-                    <label>Nama</label>
-                    <input value="" type="text" name="nama" id="nama" class="form-control" required>
-                    <small id="error-nama" class="error-text form-text text-danger"></small>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input value="" type="password" name="password" id="password" class="form-control" required>
-                    <small id="error-password" class="error-text form-text text-danger"></small>
+                    <label>Harga Jual</label>
+                    <input value="" type="text" name="harga_jual" id="harga_jual" class="form-control" required>
+                    <small id="error-barang-kode" class="error-text form-text text-danger"></small>
+                </div><div class="form-group">
+                    <label>Harga Beli</label>
+                    <input value="" type="text" name="harga_beli" id="harga_beli" class="form-control" required>
+                    <small id="error-barang-kode" class="error-text form-text text-danger"></small>
                 </div>
             </div>
             <div class="modal-footer">
@@ -42,19 +45,20 @@
     </div>
 </form>
 <script>
+    
     $(document).ready(function () {
         $("#form-tambah").validate({
             rules: {
-                level_id: { required: true, number: true },
-                username: { required: true, minlength: 3, maxlength: 20 },
-                nama: { required: true, minlength: 3, maxlength: 100 },
-                password: { required: true, minlength: 6, maxlength: 20 }
+                barang_kode: { required: true, minlength:3,maxlength:10 },
+                barang_nama: { required: true, minlength: 3, maxlength: 100 },
+                kategori_id: { required: true, number: true },
+                harga_beli: { required: true,number:true, minlength: 4, maxlength: 20 },
+                harga_jual: { required: true, number:true, minlength: 3, maxlength: 20 },
             },
             submitHandler: function (form) {
                 $.ajax({
                     url: form.action,
                     type: form.method,
-                    method: "POST",
                     data: $(form).serialize(),
                     success: function (response) {
                         if (response.status) {
@@ -64,7 +68,7 @@
                                 title: 'Berhasil',
                                 text: response.message
                             });
-                            dataUser.ajax.reload();
+                            dataBarang.ajax.reload();
                         } else {
                             $('.error-text').text('');
                             $.each(response.msgField, function (prefix, val) {

@@ -13,7 +13,7 @@ class BarangModel extends Model
     protected $table = 'm_barang'; // Nama tabel di database
     protected $primaryKey = 'barang_id'; // Primary key tabel
 
-    protected $fillable = ['barang_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual', 'stok'];
+    protected $fillable = ['barang_id','kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual', 'stok'];
 
     public function kategori(): BelongsTo
     {
@@ -24,4 +24,5 @@ class BarangModel extends Model
     {
         return $this->belongsTo(StokModel::class, 'stok_id', 'stok_id');
     }
+
 }

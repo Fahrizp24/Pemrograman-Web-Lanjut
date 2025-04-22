@@ -6,6 +6,8 @@
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
                 <a class="btn btn-sm btn-primary mt-1" href="{{ url('kategori/create') }}">Tambah</a>
+                <button type="submit" onclick="modalAction('{{ url('kategori/create_ajax') }}')"
+                    class="btn btn-sa btn-primary mt-1">Tambah Ajax</button>
             </div>
         </div>
         <div class="card-body">
@@ -27,7 +29,7 @@
                                     <option value="{{ $item->kategori_id }}">{{ $item->kategori_nama }}</option>
                                 @endforeach
                             </select>
-                            <small class="form-text text-muted">Kategori Pengguna</small>
+                            <small class="form-text text-muted">Kategori</small>
                         </div>
                     </div>
                 </div>
@@ -43,6 +45,9 @@
                 </thead>
             </table>
         </div>
+        <div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" data-backdrop="static"
+            data-keyboard="false" data-width="75%" aria-hidden="true">
+        </div>
     </div>
 @endsection
 @push('css')
@@ -50,13 +55,19 @@
 
 @push('js')
     <script>
-        $(document).ready(function() {
-            var dataKategori = $('#table_kategori').DataTable({
+        function modalAction(url = '') {
+            $('#myModal').load(url, function () {
+                $('#myModal').modal('show');
+            })
+        }
+        var dataKategori;
+        $(document).ready(function () {
+            dataKategori = $('#table_kategori').DataTable({
                 serverSide: false, // Mengaktifkan server-side processing
                 ajax: {
                     "url": "{{ url('kategori/list') }}",
                     "dataType": "json",
-                    "type": "GET",
+                    "type": "POST",
                     "data": function (d) {
                         d.kategori_id = $('#kategori_id').val();
                     }
