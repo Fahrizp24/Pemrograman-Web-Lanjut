@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/show/{id}', [LevelController::class, 'show']);
             Route::get('/import', [LevelController::class, 'import']);
             Route::post('/import_ajax', [LevelController::class, 'import_ajax']);
+            Route::get('/export_excel', [LevelController::class, 'export_excel']);
         });
         Route::group(['prefix' => 'user'], function () {
             Route::get('/', [UserController::class, 'index']);
@@ -66,6 +67,7 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/{id}', [UserController::class, 'destroy']);
             Route::get('/import', [UserController::class, 'import']);
             Route::post('/import_ajax', [UserController::class, 'import_ajax']);
+            Route::get('/export_excel', [UserController::class, 'export_excel']);
         });
     });
 
@@ -90,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/import', [BarangController::class, 'import']);
             Route::post('/import_ajax', [BarangController::class, 'import_ajax']);
             Route::get('/{id}', [BarangController::class, 'show']);
+            Route::get('/export_excel', [BarangController::class, 'export_excel']);
         });
 
         Route::group(['prefix' => 'kategori'], function () {
@@ -110,6 +113,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/{id}', [KategoriController::class, 'show']);
             Route::get('/import', [KategoriController::class, 'import']);
             Route::post('/import_ajax', [KategoriController::class, 'import_ajax']);
+            Route::get('/export_excel', [KategoriController::class, 'export_excel']);
         });
 
         Route::group(['prefix' => 'supplier'], function () {
@@ -129,6 +133,7 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/{id}', [SupplierController::class, 'destroy']);
             Route::get('/import', [SupplierController::class, 'import']);
             Route::post('/import_ajax', [SupplierController::class, 'import_ajax']);
+            Route::get('/export_excel', [SupplierController::class, 'export_excel']);
         });
 
         Route::group(['prefix' => 'stok'], function () {
@@ -149,6 +154,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/{id}', [StokController::class, 'show']);
             Route::get('/import', [StokController::class, 'import']);
             Route::post('/import_ajax', [StokController::class, 'import_ajax']);
+            Route::get('/export_excel', [StokController::class, 'export_excel']);
         });
         
     });
