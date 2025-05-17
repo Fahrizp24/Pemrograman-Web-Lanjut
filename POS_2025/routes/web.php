@@ -5,9 +5,10 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,11 @@ Route::get('logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [WelcomeController::class, 'index']);
+    Route::group(['prefix' => 'profil'], function () {
+        Route::get('/', [ProfilController::class, 'index']);
+        Route::get('/edit_foto', [ProfilController::class, 'edit_foto']);
+        Route::post('/update_foto', [ProfilController::class, 'update_foto']);
+    });
 
     // Grup route khusus Administrator (role ADM)
     Route::middleware(['authorize:ADM'])->group(function () {
